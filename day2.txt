@@ -1,0 +1,54 @@
+Input: ops = ["5","2","C","D","+"]
+Output: 30
+Explanation:
+"5" - Add 5 to the record, record is now [5].
+"2" - Add 2 to the record, record is now [5, 2].
+"C" - Invalidate and remove the previous score, record is now [5].
+"D" - Add 2 * 5 = 10 to the record, record is now [5, 10].
+"+" - Add 5 + 10 = 15 to the record, record is now [5, 10, 15].
+The total sum is 5 + 10 + 15 = 30.
+
+class Solution {
+    public int calPoints(String[] ops) {
+        Stack<Integer> stack = new Stack();
+
+        for(String op : ops) {
+            if (op.equals("+")) {
+                int top = stack.pop();
+                int newtop = top + stack.peek();
+                stack.push(top);
+                stack.push(newtop);
+            } else if (op.equals("C")) {
+                stack.pop();
+            } else if (op.equals("D")) {
+                stack.push(2 * stack.peek());
+            } else {
+                stack.push(Integer.valueOf(op));
+            }
+        }
+
+        int ans = 0;
+        for(int score : stack) ans += score;
+        return ans;
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Input: A = ["cba","daf","ghi"]
+Output: 1
+Explanation: 
+After choosing D = {1}, each column ["c","d","g"] and ["a","f","i"] are in non-decreasing sorted order.
+If we chose D = {}, then a column ["b","a","h"] would not be in non-decreasing sorted order.
+
+class Solution {
+    public int minDeletionSize(String[] A) {
+        int ans = 0;
+        for (int c = 0; c < A[0].length(); ++c)
+            for (int r = 0; r < A.length - 1; ++r)
+                if (A[r].charAt(c) > A[r+1].charAt(c)) {
+                    ans++;
+                    break;
+                }
+
+        return ans;
+    }
+}
