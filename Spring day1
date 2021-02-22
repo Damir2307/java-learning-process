@@ -1,0 +1,38 @@
+IoC-инверсия управления.Создание и управление объектами
+DI-dependency injection. Внедрение зависимостей
+IoC-аутсорсинг создания и управления объектами.Крч,передача программистом прав на создание и управление объектами Spring-у
+Аутсорсинг - прекрасная возможность для компаний получить качественную услугу без дополнительных расходов.
+
+Spring container configuration 3 спосбы бар:
+1.XML(eski)
+2.XML+annotations
+3.Java Code
+
+Spring Bean - это объект который создается с помощью Spring Container
+
+1.
+Application Context - это и есть Spring Container
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd">
+</beans>
+<bean id="myPet"
+      class="path class">
+<bean>
+
+Java Class
+ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+
+Pet pet = context.getBean("myPet",Pet.class);
+context.close;
+
+Dependency Injection - аутсорсинг добавление зависимостей.Есть 3 способа:
+1.С помощью конструктора
+2.С помощью сеттеров
+3.Autowring
