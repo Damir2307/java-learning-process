@@ -1,0 +1,28 @@
+Если класста конструктар болса:
+       <bean id="myPerson"
+            class="pathtoclass">
+            <constructor-arg ref="myPet"/>
+       </bean>
+ Если класста сеттер болса:
+       <bean id="myPerson"
+            class="pathtoclass">
+            <property name="pet" ref="myPet"/>
+            <property name="surname" value="Rakhmetulla"/>
+       </bean>
+    
+properties қа салып қойса болады значениеларды:
+    person.surname = Rakhmetulla
+    
+    <context:property-placeholder location="classpath:myApp.properties"/>
+    <property name="surname" value="${person.surname}"/>
+
+Bean scope
+singletone–дефолтный scope.
+  •такой бин создаётся сразу после прочтения Spring Container-ом конфигфайла.
+  •является общим для всех, кто запросит его у Spring Container-а.
+  •подходит для stateless объектов.
+prototype
+  •такой бин создаётся только после обращения к Spring Container-у с помощью метода getBean.
+  •для каждого такого обращения создаётся новый бин в Spring Container-е.
+  •подходит для statefulобъектов.
+  
