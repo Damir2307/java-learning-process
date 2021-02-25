@@ -20,3 +20,18 @@ esli id bean jazbasa classtyn aty id bolady kiwi arippen,esli bastapki eki arip 
     •Конструктор
     •Сеттер
     •Поле
+@Qualifier-bir kop bin bolsa koldanylady
+for ex:
+      @Autowired
+      @Qualifier("dog")
+      private Pet pet;
+constructor da kiwkene baskawa:
+      @Autowired
+      public Person(@Qualifier("dog") Pet pet){
+         this.pet=pet;
+      }
+Для внедрения строк и других значений можно использовать аннотацию @Value.
+@Scope("singletone")
+@PostConstruct-init methodka
+@PreDestroy-destroy
+eger ekeui owibka berse kizil bop javax annotation api 1.3.2 ska4at
