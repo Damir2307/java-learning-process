@@ -1,0 +1,27 @@
+Конфигурация Spring Container-а с помощью Java кода. Способ 1
+  Аннотация @Configurationозначает, что данный класс является конфигурацией.
+  С помощью аннотации @ComponentScanмы показываем, какой пакет нужно сканировать на наличие бинови разных аннотаций.
+
+  AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MyConfig.class);
+
+Конфигурация Spring Container-а с помощью Java кода. Способ 2
+  •Данный способ не использует сканирование пакета и поиск бинов. Здесь биныописываются в конфигклассе.
+  •Данный способ не использует аннотацию @Autowired. Здесь зависимости прописываются вручную.
+  •Название метода –это bean id.
+  •Аннотация @Bean перехватывает все обращения к бинуи регулирует его создание.
+  
+  @Configuration
+  public class MyConfig{
+    @Bean
+    public Pet cat(){
+      return new Cat();
+    }
+    
+    @Bean
+    public Person myPerson(){
+      return new Person(cat());
+    }
+  }
+  
+  Аннотация @PropertySourceуказывает на property файл откуда мы можем использовать значения для полей
+  мысалы Value арқылы беретындерге 
